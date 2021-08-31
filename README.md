@@ -1,4 +1,4 @@
-# @kekalma/switch
+# @kekalma/switch for React
 
 A flexible switch component for React, where you can change the look freely. The actual state is stored in a context, whose value can be used in other parts of the project.
 

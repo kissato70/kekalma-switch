@@ -1,9 +1,13 @@
 {
 	"name": "@kekalma/switch",
 	"version": "0.0.1",
-	"description": "library project",
+	"description": "Switch component for React",
 	"author": "kissato70",
 	"license": "MIT",
+	"funding": {
+    "type" : "individual",
+    "url" : "https://bit.ly/kissato70_paypal_donate"
+	},
 	"repository": "kissato70/kekalma-switch",
 	"main": "dist/switch.js",
 	"module": "dist/switch.modern.js",
@@ -14,7 +18,7 @@
 	"workspaces": [
 		"example"
 	],
-	"keywords": ["react", "switch", "option", "component"],
+	"keywords": ["react", "switch", "option", "preferences", "settings", "component", "dark mode", "typescript"],
 	"scripts": {
 		"start": "yarn install && node ./.bin/init.js && yarn install && yarn dist && yarn _predeploy && cd ..",
 		"dist": "microbundle-crl --compress --format modern,cjs",
