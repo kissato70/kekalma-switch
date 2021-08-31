@@ -2054,6 +2054,7 @@ __metadata:
     rollup-plugin-peer-deps-external: ^2.2.4
     rollup-plugin-postcss: ^4.0.1
     rollup-plugin-serve: ^1.1.0
+    rollup-plugin-terser: ^7.0.2
     rollup-plugin-typescript2: ^0.30.0
     typescript: ~4.3.5
   peerDependencies:

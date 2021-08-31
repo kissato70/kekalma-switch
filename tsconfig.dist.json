@@ -19,11 +19,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "declaration": false
+    "declaration": true,
+    "declarationMap": true
   },
   "include": [
     "src/"
   ],
   "exclude": ["node_modules","dist","example"],
-  "outDir": "dist"
+  "outDir": "dist",
+  "baseUrl": "src"
 }
