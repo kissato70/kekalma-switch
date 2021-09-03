@@ -69,15 +69,16 @@ _Please note, the content of the context is strictly a `switchMode` and `setSwit
 ```javascript
 import React from 'react'
 
+import { switchContextType }  from '@kekalma/switch'
 export const switchContext1 = React.createContext({
-  switchMode: false,
+export const switchContext1 = React.createContext<switchContextType>({
   setSwitchMode: ()=>{}
-})
+  setSwitchMode: (value: boolean)=>{}
 
 export const switchContext2 = React.createContext({
-  switchMode: false,
+export const switchContext2 = React.createContext<switchContextType>({
   setSwitchMode: ()=>{}
-})
+  setSwitchMode: (value: boolean)=>{}
 ```  
 
 <br>
@@ -127,6 +128,7 @@ export default function Info()
 ### __An example for using the style properties:__
 ```js
   <switch 
+![switch_modified](./example_images/switch_modified.jpg)
     //... main properties come here
     height = "1em"
     width = "1.7em"
