@@ -1,13 +1,13 @@
 import React, { CSSProperties, useContext, useEffect } from 'react';
 import 'reset-css';
 
-export type switchContextType<S, T> = {
-  switchMode : S,
-  setSwitchMode : (value: S) => void
+export type switchContextType = {
+  switchMode : boolean,
+  setSwitchMode : (value: boolean) => void
 }
 
 type myProps = {
-  context: React.Context<switchContextType<boolean, () => {}>>,
+  context: React.Context<switchContextType>,
   label?: string,
   initValue?: boolean,
   onSwitch?: Function,
@@ -23,7 +23,7 @@ type myProps = {
   knobStyle?: CSSProperties
 }
 
-export default function Switch(props: myProps) {
+export function Switch(props: myProps) {
   const { switchMode, setSwitchMode } = useContext(props.context)
   
   useEffect(() => {

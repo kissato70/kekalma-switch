@@ -1,12 +1,15 @@
-import React, {useContext} from 'react'
-import {switchContext1}  from './context'
+import React, { useContext } from "react";
+import { switchContextType } from "@kekalma/switch";
 
-export default function Info()
-{
-  const switchBox = useContext(switchContext1)
+type myProps = { context: React.Context<switchContextType> };
+
+export default function Info(props : myProps) {
+  const switchBox = useContext(props.context);
   return (
     <React.Fragment>
-      <span style={{margin: "0 5px"}}>{switchBox.switchMode ? 'on' : 'off'}</span>
+      <span style={{ margin: "0 5px" }}>
+        {switchBox.switchMode ? "on" : "off"}
+      </span>
     </React.Fragment>
-  )
+  );
 }

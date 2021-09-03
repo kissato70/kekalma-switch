@@ -7,7 +7,7 @@ A flexible switch component for React, where you can change the look freely. The
 The following example demonstrates the use of two independent switches, with separate context values and handler functions.
 <br>  
 
-![switch](../switch2.jpg)  
+![switch](../examőle_images//switch2.jpg)  
 
 <br>
 
@@ -15,9 +15,10 @@ __App.tsx__
 
 ```tsx
 import React, { useState } from 'react'
-import Switch from "@kekalma/switch"
-import { switchContext1 } from "./context";
-import { switchContext2 } from "./context";
+import {Switch as Switch1} from "@kekalma/switch"
+import {Switch as Switch2} from "@kekalma/switch"
+import { switchContext1 as Context1} from "./context";
+import { switchContext2 as Context2} from "./context";
 import Info from "./Info";
 import Info2 from "./Info2";
 
@@ -32,29 +33,29 @@ export default function App() {
   }
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      <switchContext1.Provider 
+      <Context1.Provider 
         value={{ switchMode: switchMode1, setSwitchMode: setSwitchMode1 }}
       >
-        <Switch
-          context={switchContext1}
+        <Switch1
+          context={Context1}
           label="Switch1:"
           initValue={false}
           onSwitch={switchHandler}
         />
         <Info />
-      </switchContext1.Provider>
+      </Context1.Provider>
       <div style={{flexBasis: "100%", height: "10px" }}></div>
-      <switchContext2.Provider 
+      <Context2.Provider 
         value={{ switchMode : switchMode2, setSwitchMode : setSwitchMode2 }}
       >
-        <Switch
-          context={switchContext2}
+        <Switch2
+          context={Context2}
           label="Switch2:"
           initValue={true}
           onSwitch={switchHandler2}
         />
         <Info2 />
-      </switchContext2.Provider>
+      </Context2.Provider>
     </div>
   )
 }
@@ -62,21 +63,22 @@ export default function App() {
 
 <br>
 
-__context.js__  
+__context.ts__  
 
 _Please note, the content of the context is strictly a `switchMode` and `setSwitchMode` value-pair, in the format below!_  
 
 ```javascript
 import React from 'react'
+import { switchContextType }  from '@kekalma/switch'
 
-export const switchContext1 = React.createContext({
+export const switchContext1 = React.createContext<switchContextType>({
   switchMode: false,
-  setSwitchMode: ()=>{}
+  setSwitchMode: (value: boolean)=>{}
 })
 
-export const switchContext2 = React.createContext({
+export const switchContext2 = React.createContext<switchContextType>({
   switchMode: false,
-  setSwitchMode: ()=>{}
+  setSwitchMode: (value: boolean)=>{}
 })
 ```  
 
@@ -87,19 +89,20 @@ __info.tsx__
 _This is an example of how tu use the context._
 
 ```tsx
-import React, {useContext} from 'react'
-import {switchContext1}  from './context'
+import React, { useContext } from "react";
+import { switchContextType } from "@kekalma/switch";
 
-export default function Info()
-{
-  const switchBox = useContext(switchContext1)
+type myProps = { context: React.Context<switchContextType> };
+
+export default function Info(props : myProps) {
+  const switchBox = useContext(props.context);
   return (
     <React.Fragment>
-      <span style={{margin: "0 5px"}}>
-        {switchBox.switchMode ? 'on' : 'off'}
+      <span style={{ margin: "0 5px" }}>
+        {switchBox.switchMode ? "on" : "off"}
       </span>
     </React.Fragment>
-  )
+  );
 }
 ```
 
@@ -125,6 +128,9 @@ export default function Info()
 
 
 ### __An example for using the style properties:__
+
+![switch_modified](../example_images/switch_modified.jpg)
+
 ```js
   <switch 
     //... main properties come here
