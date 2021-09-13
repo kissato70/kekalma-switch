@@ -6,7 +6,7 @@ export type switchContextType = {
   setSwitchMode : (value: boolean) => void
 }
 
-type myProps = {
+export type switchProps = {
   context: React.Context<switchContextType>,
   label?: string,
   initValue?: boolean,
@@ -23,7 +23,7 @@ type myProps = {
   knobStyle?: CSSProperties
 }
 
-export function Switch(props: myProps) {
+export function Switch(props: switchProps) {
   const { switchMode, setSwitchMode } = useContext(props.context)
   
   useEffect(() => {
