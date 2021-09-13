@@ -144,6 +144,16 @@ export default function Info(props : myProps) {
   />
 ```
 
+<br>
+
+## __Exported type definitions (Typescript)__
+
+|exported item|Description|
+|---|---|
+|switchProps|All the properties listed above|
+|switchContextType|Context type definition|
+
+
 
 <br>
 
