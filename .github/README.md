@@ -7,7 +7,7 @@ A flexible switch component for React, where you can change the look freely. The
 The following example demonstrates the use of two independent switches, with separate context values and handler functions.
 <br>  
 
-![switch](../examőle_images//switch2.jpg)  
+![switch](../example_images//switch2.jpg)  
 
 <br>
 
@@ -15,17 +15,15 @@ __App.tsx__
 
 ```tsx
 import React, { useState } from 'react'
-import {Switch as Switch1} from "@kekalma/switch"
-import {Switch as Switch2} from "@kekalma/switch"
+import {Switch} from "@kekalma/switch"
 import { switchContext1 as Context1} from "./context";
 import { switchContext2 as Context2} from "./context";
 import Info from "./Info";
-import Info2 from "./Info2";
 
 export default function App() {
   const [switchMode1, setSwitchMode1] = useState(false);
   const [switchMode2, setSwitchMode2] = useState(false);
-  const switchHandler = (newValue) => {
+  const switchHandler1 = (newValue) => {
     console.log('Switch state 1:', newValue)
   }
   const switchHandler2 = (newValue) => {
@@ -36,25 +34,25 @@ export default function App() {
       <Context1.Provider 
         value={{ switchMode: switchMode1, setSwitchMode: setSwitchMode1 }}
       >
-        <Switch1
+        <Switch
           context={Context1}
           label="Switch1:"
           initValue={false}
-        <Info />
+          onSwitch={switchHandler1}
         />
-        <Info />
+        <Info context={Context1}/>
       </Context1.Provider>
       <div style={{flexBasis: "100%", height: "10px" }}></div>
       <Context2.Provider 
         value={{ switchMode : switchMode2, setSwitchMode : setSwitchMode2 }}
       >
-        <Switch2
+        <Switch
           context={Context2}
           label="Switch2:"
           initValue={true}
           onSwitch={switchHandler2}
         />
-        <Info2 />
+        <Info context={Context2}/>
       </Context2.Provider>
     </div>
   )
@@ -111,7 +109,7 @@ export default function Info(props : myProps) {
 ## Property parameters
 |property|format|Description|
 |---|:---:|---|
-| context| React.Context<br><switchContextType<boolean, () => {}>> | Required. The context, to store the state and the handler. See the above example for the format. |
+| context| React.Context<br>\<switchContextType> | __Required.__ The context, to store the state and the handler. See the above example for the format. |
 |label|string|(Optional) The label text before the switch.|
 |initialValue|boolean|(Optional) [FALSE] The initial value on creation.|
 |onSwitch|Function|(Optional) The handler function for the change event.|
@@ -120,8 +118,8 @@ export default function Info(props : myProps) {
 |borderON|string|(Optiona) CSS value  the border color if switched on.| 
 |borderOFF|string|(Option) CSS value  the border color if switched off.| 
 |colorON|string|(Optional) CSS value  the knob color if switched on.| 
-|colorOFF|string|(Optiona) CSS value  the knob color if switched off.| 
-|bgColorON|string|(Option) CSS value  the background color if switched on.| 
+|colorOFF|string|(Optional) CSS value  the knob color if switched off.| 
+|bgColorON|string|(Optional) CSS value  the background color if switched on.| 
 |bgColorOFF|string|(Optional) CSS value of the background color if switched off.|
 |switchStyle|React.CSSProperties|(Optional) General CSS rules for the switch.|
 |knobStyle|React.CSSProperties|(Optional) General CSS rules for the knob.|
