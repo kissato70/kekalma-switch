@@ -40,7 +40,7 @@ export default function App() {
           context={Context1}
           label="Switch1:"
           initValue={false}
-          onSwitch={switchHandler}
+        <Info />
         />
         <Info />
       </Context1.Provider>
