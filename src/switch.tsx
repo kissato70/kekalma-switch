@@ -1,4 +1,4 @@
-import React, { CSSProperties, useContext, useEffect } from 'react';
+import React, { CSSProperties, useContext, useState, useEffect } from 'react';
 import 'reset-css';
 
 export type switchContextType = {
@@ -7,10 +7,11 @@ export type switchContextType = {
 }
 
 export type switchProps = {
-  context: React.Context<switchContextType>,
+  id?: string,
+  context?: React.Context<switchContextType>,
+  onSwitch?: Function,
   label?: string,
   initValue?: boolean,
-  onSwitch?: Function,
   height?: string,
   width?: string,
   borderON?: string,
@@ -24,22 +25,31 @@ export type switchProps = {
 }
 
 export function Switch(props: switchProps) {
-  const { switchMode, setSwitchMode } = useContext(props.context)
+  let [mode, setMode] = useState(false)
+  let setSwitchMode: switchContextType['setSwitchMode']
+  if (props.context) {
+    ({ setSwitchMode } = useContext(props.context))
+  }
   
   useEffect(() => {
-    if (props.initValue) setSwitchMode(props.initValue)
-  }, [setSwitchMode, props.initValue])
+    if (props.initValue) setMode(props.initValue)
+    if (props.context && props.initValue) setSwitchMode(props.initValue)
+  }, [ props.initValue])
 
   const switchHandler = () => {
-    setSwitchMode(!switchMode)
-    if (props.onSwitch) props.onSwitch(!switchMode)
+    setMode(!mode)
+    if (props.context) setSwitchMode(!mode)
+    if (props.onSwitch) {
+      if (props.id) props.onSwitch(!mode, props.id)
+      else props.onSwitch(!mode)
+    }
   }
 
 
   const label = props.label ? <span className="switchLabelClass" style={{ margin: '0 5px' }}>{props.label}</span> : ''
 
   
-  const switchClass = `${switchMode ? "kekalma-switch-on" : "kekalma-switch-off"}`
+  const switchClass = `${mode ? "kekalma-switch-on" : "kekalma-switch-off"}`
   
   const CSSparam = (HwD: string[]) => {
     let Hn = ""
@@ -77,7 +87,7 @@ export function Switch(props: switchProps) {
     ...props.switchStyle || {}
   } as const
   let switchState: React.CSSProperties
-  if (switchMode) {
+  if (mode) {
     switchState = {
       flexDirection: "row-reverse",
       border: `${Hnn / 9}${Hdd} solid ${BorderON}`,
@@ -101,7 +111,7 @@ export function Switch(props: switchProps) {
     ...props.knobStyle || {}
   } as const
   let knobState: React.CSSProperties
-  if (switchMode) {
+  if (mode) {
     knobState = {
       backgroundColor: `${ColorON}`,
       marginRight: `-${Hnn / 100}${Hdd}`
