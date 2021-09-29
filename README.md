@@ -13,7 +13,7 @@ If an 'id' is set, the switchHandler callback function gets the 'id' parameter t
 ![switch](./example_images/switch3.jpg)  
 
 |switch #|context|handler|id|
-|---|:---|:---|---|
+|:---:|:---|:---|:---:|
 |1|Context1|switchHandler1(newValue)||
 |2|Context2|switchHandler(newValue,id)|switch2|
 |3||switchHandler(newValue,id)|switch3|
