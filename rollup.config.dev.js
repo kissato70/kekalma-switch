@@ -1,13 +1,9 @@
 import cleaner from "rollup-plugin-cleaner";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import node_resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import json from "@rollup/plugin-json";
-import replace from "@rollup/plugin-replace";
-import copy from "rollup-plugin-copy";
-import serve from "rollup-plugin-serve";
 import livereload from 'rollup-plugin-livereload';
 
 export default {
