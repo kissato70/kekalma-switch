@@ -178,6 +178,7 @@ _All the property parameters are optional, but one from `onSwitch` or `context` 
 |Version|What's new, description|
 |---|---|
 |1.0.0|First official, working release.|
+|1.0.1|Cleaning the dependencies in code.|
 
 <br>
 
